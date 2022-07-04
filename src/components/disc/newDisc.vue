@@ -7,7 +7,7 @@
                 </svg> 
                <span>新碟上架</span> 
             </p>
-            <router-link to="/" class="more">查看更多</router-link>
+            <router-link to="" class="more">查看更多</router-link>
         </div>
         <div class="demo-image">           
             <div v-for="item in  discList" :key="item.id" class="block">
@@ -25,9 +25,7 @@
                         </span>                                                                     
                  </router-link>                     
             </div>          
-
-         </div>
-        
+         </div>        
     </div>
 </template>
 
@@ -65,10 +63,10 @@ export default {
 </script>
 
 <style  lang='less' type='text/css'>
-.newDisc{
+.newDisc{   
     margin: auto;
     width: 800px;
-    height: 300px;
+    height: 390px;
     border: 1px solid black;
     .text{
         width: 800px;
@@ -78,7 +76,7 @@ export default {
     }
      .h{
             width: 70%;
-            height:40px;
+            height:50px;
             // border: 1px solid yellow;
             margin-left: 10px;
             text-align: left;            
@@ -94,7 +92,7 @@ export default {
                 vertical-align: -0.15em;
                 fill: currentColor;
                 overflow: hidden;
-                margin-top:-10px ;
+                // margin-top:-10px ;
                 //  border: 1px solid blue; 
                 margin-right: 10px;           
                 float: left;

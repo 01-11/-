@@ -1,117 +1,77 @@
-
 <template>
-<div>
-
-
-   <div class="songList"  >
-       <table class="layui-table" >
-            <colgroup >
-                <col width="100">                
-                <col width="200">
-                <col width="200">
-                <col width="400">
-            </colgroup>
-            <thead >
-                <tr>
-                <th>播放</th>                
-                <th>歌曲名称</th>
+<div class="allSongs"> 
+    <div class="songsSvg">
+        <svg class="icon" aria-hidden="true" @click="display(item.id)">
+                <use xlink:href = '#icon-DJ'></use>                       
+        </svg>        
+    </div>            
+   <table >
+        <thead>
+            <tr>
+                <th>PLAY</th>
+                <th>标题</th>
                 <th>歌手</th>
                 <th>专辑</th>
-                </tr> 
-            </thead>
-            <tbody v-for="item in allSongs" :key="item.id" class="songTbody">
-                <tr>
-                    <td>  
-                        <router-link :to="'/playMusic/'+item.id">  
-                        <svg class="icon" aria-hidden="true" @click="display(item.id)">
-                            <use xlink:href = '#icon-pindaobofang'></use>                       
+            </tr>
+        </thead>    
+        <tbody v-for="(item,i) in allSongs" :key="i">
+            <tr>                
+                    <td style="width:50px" @click="playmusic(i)">
+                        <svg class="icon" aria-hidden="true" >
+                            <use xlink:href = '#icon-shoucang'></use>                       
                         </svg>
-                        </router-link>
-                    </td>
-                    <td>{{item.name}}</td>
+                    </td>                
+                    <td style="width:230px">{{item.name}}</td>
                     <td>{{item.ar[0].name}}</td>
-                    <td>{{item.al.name}}</td>
-                </tr>                
-            </tbody>
-        </table>
-       <!-- <play-music></play-music> -->
-      
-        <!-- <div v-for="item in allSongs" :key="item.id" >
-           <router-link :to="'/playMusic/'+item.id">  
-                <div class="songSvg">
-                    <svg class="icon" aria-hidden="true" @click="display(item.id)">
-                        <use xlink:href = '#icon-pindaobofang'></use>                       
-                    </svg>
-                    <span> {{item.name}}</span>  
-                    <span> {{item.ar[0].name}}</span>
-                </div>                           
-                
-                <span class="songName">
-                   
-                </span> 
-               
-            </router-link>                    
-              
-               
-       </div>  -->
-                   <!-- <el-table-column label="歌手">
-                           获取多个歌手 
-                         <template #default="allSongs">
-                            <span
-                                 class="row_po" v-for="(item, index) in allSongs.row.ar" :key="item.id" @click="getSingerId(item.id)">
-                                 {{ item.name}}
-                            <i v-if="index === allSongs.row.ar.length - 1 ? 0 : 1">& </i>
-                            </span > 
-                      </template> 
-                    </el-table-column>     -->
-                      <!-- <playMusic :allSongsVal="allSongsVal"></playMusic>   -->
-   </div>  
-
-    
-   <footer-music/>
-     <!-- </router-link> -->
-    <!-- <footerMusic/> -->
-   </div>
-  
+                    <!-- <router-link :to="'/songLyric/'+item.id"> -->
+                     <td>{{item.al.name}}</td>               
+                    <!-- </router-link> -->
+            </tr>    
+        </tbody>
+    </table>
+   </div>            
 </template>
 <script>
-
-
 import axios from 'axios'
-import playMusic from './playMusic.vue'
-import footerMusic from '@/components/footer/footerMusic.vue'
+import hotCommend from '@/components/home/hotCommend.vue'
+import { mapMutations } from 'vuex'
+
 export default{
     name:'allSongs',
     components:{
-        playMusic,
-       footerMusic
+      
+        hotCommend,
+    
     },
     data() {
-        return {   
-            // name:'ssss'        ,
-            // data:this.allSongs.name,
-           
-            allSongs:[],
-            allSongsVal:{}
-            //  val:this.allSongs,
+        return {  
+          
+            allSongs:{} ,
+               
         }
     },
    methods: {
-    //    play(){
-    //        console.log('我是play')
-    //        alert('没有版权')
-    //     //    console.log(this.$route.params.id);
-    //    }
+    
+       playmusic(i){
+           console.log('我是前'); 
+        //    把整个歌曲的列表传给底部播放
+           this.updatePlayList(this.allSongs) 
+        //    根据下标进行切换
+           this.updatePlayListIndex(i)       
+                    
+       },
+    //    ...就是自动添加vuex中的组件 import {} from 'vuex'
+      ...mapMutations(['updatePlayList','updatePlayListIndex'])
+      
    },
+    
     created() {
         axios.get('/playlist/track/all?id='+this.$route.params.id).then(res => {
-            console.log('wwww');
+            console.log('我是所有歌曲');
             console.log(res);
             this.allSongs = res.data.songs
-            console.log(this.allSongs);
-            this.allSongsVal = res.data.songs
-            console.log('11111111');
-            console.log(this.allSongsVal);
+            // this.songPic = this.allSongs[0].al.picUrl
+            // console.log(this.allSongs[0].al.picUrl); 
             
         })
        
@@ -121,45 +81,52 @@ export default{
 
 
 <style scoped lang='less'>
-.songList{
+table{
     width: 800px;
-  
     margin: auto;
-    table{
+}
+th{
+    border-bottom: 1px solid gainsboro;
+    height: 60px;
+    // width: 200px;
+    text-align: center;
+}
+tr:hover {background-color: #f5f5f5;}
+ 
+.allSongs{
+    width: 800px;
+    height: 400px;
+    // border: 1px solid red;
+    .songsSvg{
+        width:100px;
+        height: 100px;
         // border: 1px solid red;
-    }
-    colgroup{
-       
-    }
-    .songTbody{        
         svg{
-              
-            margin-left: 50px;
+            width: 100%;
+            height: 100%;
+            transform: rotate(320deg);
+            display: inline-block;
+            
         }
     }
-    span{
-        margin-right:60px;
+    .songsList{
+        width: 800px;
+        // height: 400px;
+        // border: 1px solid green;
+    }
+    .songSvg{
+        width: 800px;
+        height: 40px;
+        border: 1px solid red;
+        display: flex;
+        svg{
+            width: 40px;
+            height: 40px;
+            // border: 1px solid rebeccapurple;
+            // margin-right: 40px;
+        }
     }
 }
-    .bofang{
-    width: 20px;
-    height: 20px;
-    }
-    .list img{
-        width: 20px;
-        height: 20px;
-    }
-    .elTable{
-        width: 800px;
-        background-color: snow;
-        border: 1px solid red;
-        margin: auto;
-    }
-    a{
-        text-decoration: none;
-        color: black;
-    }
-    
  .icon{
         width: 30px;
         height: 30px;

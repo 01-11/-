@@ -10,7 +10,7 @@
      
        <playDisc></playDisc>
        <div class="discIcon">
-            <svg class="icon" aria-hidden="true">
+            <svg class="icon" aria-hidden="true" @click="good">
                 <use xlink:href = '#icon-tubiaozhizuomoban'></use>                       
             </svg>
             <svg class="icon" aria-hidden="true">
@@ -57,21 +57,19 @@ export default {
         //     console.log('我是点击')
         //    console.log(this.discDetails);
         // }
+        good(){
+            console.log('点赞');
+        }
     },
-    created() {
-        // this.mvid = this.id
+    created() {     
         axios.get('/mv/detail?mvid='+this.$route.params.id).then(res =>{
             console.log(this.$route.params.id);
             this.discDetails = res.data.data
-            this.id = this.$route.params.id
-            // console.log(this.id);
+            this.id = this.$route.params.id           
             console.log('-----------');
             console.log(res);
-            console.log(this.discDetails);
-           
-            // console.log('res')
-            // console.log();
-        })
+            console.log(this.discDetails);                     
+        })       
     },
 }
 </script>

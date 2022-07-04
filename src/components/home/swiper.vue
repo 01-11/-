@@ -1,10 +1,13 @@
 <template>
 <div>
     <el-carousel :interval="3000" type="card" height="200px">
+
             <div class="swiper">
                 <el-carousel-item v-for="image in images" :key="image">
                     <!-- <h3 text="2xl" justify="center">{{ item }}</h3> -->
+                    <!-- <router-link :to="'/swiperDetails/'+image.targetId"> -->
                     <img :src="image.imageUrl">
+                    <!-- </router-link> -->
                 </el-carousel-item>
             </div>
             
@@ -16,11 +19,14 @@
 
 <script>
 import axios from 'axios'
+// import {defineComponent} from 'vue'
 
 
 export default {
     name:'swiper',
-    components:{},
+    components:{
+       
+    },
     data() {
         return {                                          
             images:[]
@@ -29,7 +35,8 @@ export default {
     created() {
     //    用axios来获取
         axios.get('/banner?type=0').then((res)=>{
-            // console.log(res)
+            console.log('轮播图');
+            console.log(res)
             this.images = res.data.banners
             // console.log('---------');
             // console.log(this.images)             
@@ -54,6 +61,7 @@ export default {
 .el-carousel{
     width: 100%;
     height: 300px;
+    margin-top: 30px;
     /* border: 1px solid red; */
 }
 .swiper{
@@ -77,10 +85,10 @@ export default {
 
 
 .el-carousel__item:nth-child(2n) {
-  background-color: #99a9bf;
+  background-color: black;
 }
 
 .el-carousel__item:nth-child(2n + 1) {
-  background-color: #d3dce6;
+  background-color: black;
 }
 </style>

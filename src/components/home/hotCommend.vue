@@ -1,5 +1,6 @@
 <template>
     <div class="hotCommend">
+       
         <div class="text">
             <p class="h">
                  <svg class="icon" aria-hidden="true">
@@ -7,12 +8,12 @@
                 </svg> 
                <span >热门推荐</span>
             </p>
-            <router-link to="/allsongList" class="more">查看更多</router-link>
+            <router-link to="" class="more">查看更多</router-link>
         </div>              
         <div class="demo-image">           
             <div v-for="item in songList" :key="item.id" class="block" >
                  <router-link :to="'/songDetails/'+item.id" class="a" >
-                        <!-- <img src="@/images/bofang.png" alt="" class="bofang"> {{changeCount(item.playCount)}} -->
+                        <!-- <img src="@/components/images/bofang.png" alt="" class="bofang"> {{changeCount(item.playCount)}} -->
                         <div class="imgbox">
                                 <el-image class='elImage' style="width: 100px; height: 100px" :src="item.picUrl"  />
                                 <div class="viewCount">
@@ -36,6 +37,7 @@
 import axios from 'axios'
 export default {
     name:'hotCommend',
+    
     components:{},
     data() {
         return {
@@ -94,7 +96,7 @@ export default {
         display: flex;
         .h{
             width: 70%;
-            height:40px;
+            height:50px;
             // border: 1px solid yellow;
             margin-left: 10px;
             text-align: left;            
@@ -110,7 +112,7 @@ export default {
                 vertical-align: -0.15em;
                 fill: currentColor;
                 overflow: hidden;
-                margin-top:-10px ;
+                // margin-top:10px ;
                 //  border: 1px solid blue; 
                 margin-right: 10px;           
                 float: left;
