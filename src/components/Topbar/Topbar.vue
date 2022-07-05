@@ -93,12 +93,13 @@ export default ({
 <style scoped lang='less'>
 #topbar {
   width: 100%;
-  background-color: snow;
+  // background-color: pink;
+  border:1px solid green;
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;
-
+  margin-bottom:30px;
   .top-nav1 {
     height: 70px;
     width: 980px;
@@ -109,7 +110,7 @@ export default ({
 
     .top-logo {
       font-family:"FZShuTi";
-      font-size: 30px;
+      font-size: 40px;
       margin-right: 25px;
       width: 200px;
 
@@ -148,7 +149,7 @@ export default ({
 
       li:hover {
         color: black;
-        font-size: 15px;
+        font-size: 20px;
         // background-color: #000000;
       }
     }

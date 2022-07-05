@@ -15,7 +15,8 @@
             </tr>
         </thead>    
         <tbody v-for="(item,i) in allSongs" :key="i">
-            <tr>                
+            <tr>                        
+                <!-- 传参  每一首歌对应的下标索引 -->
                     <td style="width:50px" @click="playmusic(i)">
                         <svg class="icon" aria-hidden="true" >
                             <use xlink:href = '#icon-shoucang'></use>                       
@@ -51,16 +52,17 @@ export default{
         }
     },
    methods: {
-    
+    // 点击图标，可播放
        playmusic(i){
-           console.log('我是前'); 
-        //    把整个歌曲的列表传给底部播放
+           console.log('我是playmusic'); 
+        //    把整个歌曲的列表传过来
            this.updatePlayList(this.allSongs) 
-        //    根据下标进行切换
+        //    根据下标切换 进行播放
            this.updatePlayListIndex(i)       
                     
        },
-    //    ...就是自动添加vuex中的组件 import {} from 'vuex'
+
+    // 当 进入 歌曲列表后 ，把整个歌曲传给updatePlayList  ，传下标
       ...mapMutations(['updatePlayList','updatePlayListIndex'])
       
    },

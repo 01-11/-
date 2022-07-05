@@ -39,7 +39,6 @@ app.use(store)
 app.use(router)
 app.use(ElementPlus)
 app.use(Antd)
-// app.use(Vuex)
 app.mount('#app')
 // app.prototype.$bus = this
 // app.prototype.$API = API

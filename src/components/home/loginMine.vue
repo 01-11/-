@@ -6,7 +6,7 @@
 
 <script>
 import axios from 'axios'
-import {loginMine} from '@/components/api/login'
+
 export default {
     setup() {
         

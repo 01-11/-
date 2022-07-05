@@ -16,7 +16,7 @@ import discDetails from '@/components/disc/discDetails.vue'
 import songLyric from '@/components/music/songLyric.vue'
 import loginMine from '@/components/home/loginMine.vue'
 import store from '@/store'
-import radioHome from '@/components/radio/radioHome.vue'
+// import radioHome from '@/components/radio/radioHome.vue'
 import search from '@/components/home/search.vue'
 
 // 引入nprogress #一款页面加载时进度条
@@ -87,11 +87,11 @@ const routes = [
   //   name:'allSinger',
   //   component:allSinger
   // },
-  {
-      path:'/radioHome',
-      name:radioHome,
-      component:radioHome
-  },
+  // {
+  //     path:'/radioHome',
+  //     name:radioHome,
+  //     component:radioHome
+  // },
   // {
   //   path:'/songIndex/:id',
   //   name:'songIndex',

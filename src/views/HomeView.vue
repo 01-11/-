@@ -2,12 +2,10 @@
 <template>
 <!-- 首页 -->
   <div class="home">
-    <!-- <search/> -->
-    <!-- <login/> -->
+     
     <Swiper/>
     <hotCommend/>
-    <newDisc/>
-    <!-- <rankList/> -->
+    <newDisc/>    
     
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   </div>
@@ -21,6 +19,7 @@
 import Swiper from '@/components/home/swiper.vue'
 import hotCommend from '@/components/home/hotCommend'
 import newDisc from '@/components/disc/newDisc'
+
 // import rankList from '@/components/rank/rankList'
 // import login from '@/components/login/login.vue'
 
@@ -32,6 +31,7 @@ export default {
     // HelloWorld
     // search,
     // login,
+    
     Swiper,
     hotCommend,
     newDisc,
